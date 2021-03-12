@@ -68,9 +68,11 @@ var frontdoor = new Encounter({
     kakure.bashcounter++
     switch(kakure.bashcounter){
       case 0:
-        frontdoor.boxed_text="One with your maker, you throw your weight into the glass, and feel the door budge a little, but remain shut."
         break;
       case 1:
+        frontdoor.boxed_text="One with your maker, you throw your weight into the glass, and feel the door budge a little, but remain shut."
+        break;
+      case 2:
         frontdoor.boxed_text="Persistent and devout, you get a little runup this time, and mildly concuss yourself. But the door does budge a little more."
         frontdoor.outcomes[0]=foyer1
         break;
