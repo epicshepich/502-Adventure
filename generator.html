@@ -1,0 +1,37 @@
+<html>
+  <head><title>Encounter Builder</title></head>
+  <body>
+      <div title="This parameter is unique ID for backend referencing; you (the writer) will use the encounter name in order to specify the outcome of a choice.">Name:<br />
+      <textarea id="name"></textarea></div><br />
+      <br />
+
+      <div title="This is the heading for the encounter that players will see. It also shows up in the title of the tab.">Title:<br />
+      <textarea id="title"></textarea></div><br />
+      <br />
+
+      <div title="This parameter is the text description of the encounter">Boxed Text:<br />
+      <textarea id="boxtext" rows="12" cols="100"></textarea></div><br />
+      <br />
+
+      <table id="choices">
+        <tr>
+          <th>Choice #</th>
+          <th title="This is the text description of an option that a player can choose in the encounter">Description</th>
+          <th title="This is the unique name of the encounter that results from a given choice.">Outcome Name</th>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td><textarea cols="50" rows="2" id="choice1"></textarea></td>
+          <td><textarea id="outcome1"></textarea></td>
+        </tr>
+      </table>
+<button id="addchoice">Add Choice</button><br /><br />
+<hr />
+      Generated Code:<br />
+      <textarea id="codebox" rows="20" cols="100" readonly=true></textarea><br />
+      <br />
+
+      <script src="generator.js"></script>
+  </body>
+</html>
