@@ -1,0 +1,69 @@
+List of Encounters (just to keep everything straight)
+
+================================================================================
+                              Main Encounters
+                (encounters that have true branching points)
+================================================================================
+frontdoor
+foyer1
+samsroom
+*kitchen
+*basement
+livingroom
+situps
+*bonezone
+pasokon
+foyerblank
+
+
+================================================================================
+                              ALL ENCOUNTERS
+                (encounters that have true branching points)
+                   *: encounter is referenced, but empty
+================================================================================
+frontdoor
+foyer1
+    foyer2a
+    foyer2b
+samsroom
+  samsroom1
+  samsroom2
+  samsroom3
+    sambath
+      selfesteem
+      samtub
+      samtoilet
+    fishtank
+kitchen
+  backdoor
+    shed
+      _monogram
+  cupboard
+livingroom
+  livingjack
+    bladder
+    lyreharp
+    warmbox
+  livingsarah
+    livingloving
+    livingnailedit
+    livingtrapped
+
+
+*foyerblank
+*basement
+situps
+    crunchpartner
+    jssitups
+    jjsitups
+    situp
+    nextset
+bonezone
+pasokon
+  _steam
+  *_files
+  *_discord
+
+
+diarrhea
+carrots
