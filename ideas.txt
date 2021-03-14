@@ -8,12 +8,16 @@ True Love Presidents Edition
 Fight club (rock paper scissors?)
 
 Jim's computer
+  CMD
+    make a text prompt and eval() anything typed into it
   Discord
     Embarrasing messages
     Pit
     Book memes
   Steam
     Skyrim
+    Doom JS?
+    Sans JS?
   Files
     Oniichan spam
     Erwin memes
