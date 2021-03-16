@@ -4,12 +4,22 @@ Alexa Skyrim
   https://en.m.uesp.net/wiki/SkyrimVSE:Quests
 
 True Love Presidents Edition
+  gameover (endings=)
+    Obama
+    Bush
+    Clinton
+    punch
+    leavebush
+    bodyslam
+
 
 Fight club (rock paper scissors?)
 
 Jim's computer
   CMD
     make a text prompt and eval() anything typed into it
+    flesh out commands (help)
+    arrow keys navigate previous inputs (array of inputs)
   Discord
     Embarrasing messages
     Pit

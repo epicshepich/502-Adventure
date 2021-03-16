@@ -1,5 +1,15 @@
-box = document.getElementById("box");
-options = document.getElementById("options");
+var box = document.getElementById("box");
+var options = document.getElementById("options");
+var CMD={
+  console:document.getElementById("cmd"),
+  prompt:document.getElementById("cmdprompt"),
+  keychecker:function(){},
+  handler:function(){},
+  log:"",
+  navigate:false,
+  inputs:[],
+  input_pointer:0
+}
 
 var player = {inventory:{poops:0,keyboard:0,fedora:0}};
 var kakure = {};
@@ -23,6 +33,7 @@ function Encounter(argument){
   }
 
   this.gen = function(){
+    CMD.navigate=true;
       if(this.callback){
         this.callback();
       }
@@ -87,6 +98,7 @@ var pasokon=function(){};
   var _steam=function(){};
   var _files=function(){};
   var _discord=function(){};
+  var _cmd=function(){};
 
 var diarrhea = new Encounter({
   name:"diarrhea",
@@ -426,8 +438,8 @@ shed = new Encounter({
 	outcomes:[backdoor],
 	callback:function(){
     if(player.inventory.fedora>0){
-      this.choices.push("Don fedora");
-      this.outcomes.push(_monogram);
+      this.choices=["Don fedora","Go back"];
+      this.outcomes=[_monogram,backdoor];
     }
 	}
 })
@@ -436,7 +448,7 @@ shed = new Encounter({
 //                                True Love, Presidents Edition
 //==============================================================================
 //NOTE: for kakure minigames, the main encounter that leads to the first kakure encounter must come after all of them in the code
-kakure.presidents={hearts:2.5};
+kakure.presidents={hearts:2.5,ending:""};
 kakure.presidents.kokoro=function(obj,H){
   kakure.presidents.hearts+=H;
   console.log(kakure.presidents.hearts);
@@ -495,11 +507,36 @@ kakure.presidents.obama=function(){};
                     kakure.presidents.o_nextmonth=function(){};
                     kakure.presidents.o_michelle=function(){};
                     kakure.presidents.o_tonight=function(){};
-kakure.presidents.bushsr=function(){};
 kakure.presidents.bushjr=function(){};
+    kakure.presidents.b_hello=function(){};
+    kakure.presidents.b_sup=function(){};
+    kakure.presidents.b_pants=function(){};
+        kakure.presidents.b_great=function(){};
+        kakure.presidents.b_yessir=function(){};
+        kakure.presidents.b_whatever=function(){};
+          kakure.presidents.b_dongxi=function(){};
+              kakure.presidents.b_chicken=function(){};
+              kakure.presidents.b_tuna=function(){};
+              kakure.presidents.b_body=function(){};
+                  kakure.presidents.b_cat=function(){};
+                  kakure.presidents.b_sorry=function(){};
+                  kakure.presidents.b_punch=function(){};
+                      kakure.presidents.b_tired=function(){};
+                      kakure.presidents.b_hungry=function(){};
+                      kakure.presidents.b_eat=function(){};
+                          kakure.presidents.b_goodidea=function(){};
+                          kakure.presidents.b_perv=function(){};
+                          kakure.presidents.b_myown=function(){};
+                              kakure.presidents.b_tea=function(){};
+                              kakure.presidents.b_thanks=function(){};
+                              kakure.presidents.b_laid=function(){};
+kakure.presidents.bushsr=function(){};
 kakure.presidents.clinton=function(){};
 kakure.presidents.quit=function(){};
 kakure.presidents.gameover=function(){};
+/*
+bodyslam
+*/
 
 kakure.presidents.start= new Encounter({
  name:"kakure.presidents.start",
@@ -576,6 +613,7 @@ kakure.presidents.obama = new Encounter({
 	choices:["\"Hello, Mr. Obama\"","\"Sup, Barack\"","\"Take your shirt off\"","*body slam obama*"],
 	outcomes:[_monogram,_monogram,_monogram,_monogram],
 	callback:function(){
+    kakure.presidents.ending="obama";
     this.outcomes=[kakure.presidents.o_hello,kakure.presidents.o_sup,kakure.presidents.o_shirt,kakure.presidents.o_slam]
 	}
 })
@@ -619,12 +657,13 @@ kakure.presidents.o_shirt = new Encounter({
 kakure.presidents.o_slam = new Encounter({
 	name:"kakure.presidents.o_slam",
 	title:"",
-	boxed_text:"You hurl yourself at Obama. He\'s too strong, and you bounce off of him onto the floor. You pass out on the ground. Replay game?",
-	choices:["Yes","No"],
-	outcomes:[_monogram,_monogram],
+	boxed_text:"You hurl yourself at Obama. He\'s too strong, and you bounce off of him onto the floor. You pass out on the ground.",
+	choices:["Next"],
+	outcomes:[_monogram],
 	callback:function(){
     kakure.presidents.kokoro(this,-1.25);
-    this.outcomes=[kakure.presidents.opening,kakure.presidents.quit]
+    kakure.presidents.ending="bodyslam"
+    this.outcomes=[kakure.presidents.gameover]
 	}
 })
 
@@ -939,10 +978,321 @@ kakure.presidents.gameover = new Encounter({
 	}
 })
 
+kakure.presidents.bushjr = new Encounter({
+	name:"kakure.presidents.bushjr",
+	title:"",
+	boxed_text:"\"Hello, Miss.\"",
+	choices:["\"Hello, Mr. Bush\"","Sup G-dawg","Drop your pants."],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.ending="bush"
+    this.outcomes=[kakure.presidents.b_hello,kakure.presidents.b_sup,kakure.presidents.b_pants];
+	}
+})
+
+kakure.presidents.b_hello = new Encounter({
+	name:"kakure.presidents.b_hello",
+	title:"",
+	boxed_text:"\"That\'s Mr. Former President Bush to you, Miss.\"<br /><br />\"Didn\'t your mother ever teach you any manners?\"",
+  choices:["\"My mother died when I was young.\"","\"...What are \'manners\'?\"","\"No, she did not.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,+0.25);
+    this.outcomes=[kakure.presidents.b_mother,kakure.presidents.b_what,kakure.presidents.b_didnt];
+	}
+})
+
+kakure.presidents.b_sup = new Encounter({
+	name:"kakure.presidents.b_sup",
+	title:"",
+	boxed_text:"\"I ain\'t no dog.\"<br /><br />\"Didn\'t your mother ever teach you any manners?\"",
+  choices:["\"My mother died when I was young.\"","\"...What are \'manners\'?\"","\"No, she did not.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,-0.25);
+    this.outcomes=[kakure.presidents.b_mother,kakure.presidents.b_what,kakure.presidents.b_didnt];
+	}
+})
+
+kakure.presidents.b_pants = new Encounter({
+  name:"kakure.presidents.b_pants",
+  title:"",
+  boxed_text:"\"What is wrong with you, child!?\"<br /><br />\"Didn\'t your mother ever teach you any manners?\"",
+  choices:["\"My mother died when I was young.\"","\"...What are \'manners\'?\"","\"No, she did not.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.75);
+    this.outcomes=[kakure.presidents.b_mother,kakure.presidents.b_what,kakure.presidents.b_didnt];
+  }
+})
+
+kakure.presidents.b_mother = new Encounter({
+  name:"kakure.presidents.b_mother",
+  title:"",
+  boxed_text:"\"Then I shall have to teach you some manners and proper etiquette...\"<br /><br />Bush smiles and says, \"I will teach you dinner etiquette first. We can go to my favorite Chinese restaurant downtown. It\'s called Dongxi\"",
+  choices:["\"Sounds great.\"","\"Yes sir.\"","\"Whatever.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.5);
+    this.outcomes=[kakure.presidents.b_great,kakure.presidents.b_yessir,kakure.presidents.b_whatever];
+  }
+})
+
+kakure.presidents.b_what = new Encounter({
+  name:"kakure.presidents.b_what",
+  title:"",
+  boxed_text:"\"Sarcasm...I see I shall have to teach you some manners and proper etiquette.\"<br /><br />Bush smiles and says, \"I will teach you dinner etiquette first. We can go to my favorite Chinese restaurant downtown. It\'s called Dongxi\"",
+  choices:["\"Sounds great.\"","\"Yes sir.\"","\"Whatever.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.25);
+    this.outcomes=[kakure.presidents.b_great,kakure.presidents.b_yessir,kakure.presidents.b_whatever];
+  }
+})
+
+kakure.presidents.b_didnt = new Encounter({
+  name:"kakure.presidents.b_didnt",
+  title:"",
+  boxed_text:"\"In that case, I will gladly teach you manners and proper etiquette.\"<br /><br />Bush smiles and says, \"I will teach you dinner etiquette first. We can go to my favorite Chinese restaurant downtown. It\'s called Dongxi\"",
+  choices:["\"Sounds great.\"","\"Yes sir.\"","\"Whatever.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.25);
+    this.outcomes=[kakure.presidents.b_great,kakure.presidents.b_yessir,kakure.presidents.b_whatever];
+  }
+})
+
+kakure.presidents.b_great = new Encounter({
+  name:"kakure.presidents.b_great",
+  title:"",
+  boxed_text:"\"It\'s refreshing to see the kids excited for learning.\"",
+  choices:["Go to the restaurant"],
+  outcomes:[_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.25);
+    this.outcomes=[kakure.presidents.b_dongxi];
+  }
+})
+
+kakure.presidents.b_yessir = new Encounter({
+  name:"kakure.presidents.b_yessir",
+  title:"",
+  boxed_text:"\"You\'re getting better already.\"",
+  choices:["Go to the restaurant"],
+  outcomes:[_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.5);
+    this.outcomes=[kakure.presidents.b_dongxi];
+  }
+})
+
+kakure.presidents.b_whatever = new Encounter({
+  name:"kakure.presidents.b_whatever",
+  title:"",
+  boxed_text:"\"We will have to work on that attitude.\"",
+  choices:["Go to the restaurant"],
+  outcomes:[_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.25);
+    this.outcomes=[kakure.presidents.b_dongxi];
+  }
+})
+
+kakure.presidents.b_dongxi = new Encounter({
+  name:"kakure.presidents.b_dongxi",
+  title:"",
+  boxed_text:"George helps you into your seat and says, \"You can order whatever you want.\"",
+  choices:["\"Sesame chicken w\/ rice.\" ($8)","\"Bluefin tuna w\/ rice rolls.\" ($140)","\"Your body.\" ($16.50)"],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    this.outcomes=[kakure.presidents.b_chicken,kakure.presidents.b_tuna,kakure.presidents.b_body];
+  }
+})
+
+kakure.presidents.b_chicken = new Encounter({
+  name:"kakure.presidents.b_chicken",
+  title:"",
+  boxed_text:"\"Not a bad choice, but that might be too much for you.\" George tells the waiter to just get you some crackers. He orders the fried mao for himself. \"It\'s my favorite food.\"<br /><br />Your crackers soon arrive. As well as George's fried mao.<br /><br />You realize that mao is Chinese for cat. George takes a large bite of his mao, chewing slowly. You hear a small crack as George accidentally bites a bone.<br /><br />\"It\'s rude to stare at others while they are eating.\"",
+  choices:["\"It\'s not everyday that you see someone eating a cat.\"","\"Yes sir, sorry sir.\"","That\'s it *punch George in the face*."],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.25);
+    this.outcomes=[kakure.presidents.b_cat,kakure.presidents.b_sorry,kakure.presidents.b_punch];
+  }
+})
+
+kakure.presidents.b_tuna = new Encounter({
+  name:"kakure.presidents.b_tuna",
+  title:"",
+  boxed_text:"\"It\'s rude to order the most expensive thing on the menu.\" George tells the waiter to just get you some crackers. He orders the fried mao for himself. \"It\'s my favorite food.\"<br /><br />Your crackers soon arrive. As well as George's fried mao.<br /><br />You realize that mao is Chinese for cat. George takes a large bite of his mao, chewing slowly. You hear a small crack as George accidentally bites a bone.<br /><br />\"It\'s rude to stare at others while they are eating.\"",
+  choices:["\"It\'s not everyday that you see someone eating a cat.\"","\"Yes sir, sorry sir.\"","That\'s it *punch George in the face*."],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.5);
+    this.outcomes=[kakure.presidents.b_cat,kakure.presidents.b_sorry,kakure.presidents.b_punch];
+  }
+})
+
+kakure.presidents.b_body = new Encounter({
+  name:"kakure.presidents.b_body",
+  title:"",
+  boxed_text:"\"Are you trying to anger me?\" George tells the waiter to just get you some crackers. He orders the fried mao for himself. \"It\'s my favorite food.\"<br /><br />Your crackers soon arrive. As well as George's fried mao.<br /><br />You realize that mao is Chinese for cat. George takes a large bite of his mao, chewing slowly. You hear a small crack as George accidentally bites a bone.<br /><br />\"It\'s rude to stare at others while they are eating.\"",
+  choices:["\"It\'s not everyday that you see someone eating a cat.\"","\"Yes sir, sorry sir.\"","That\'s it *punch George in the face*."],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.75);
+    this.outcomes=[kakure.presidents.b_cat,kakure.presidents.b_sorry,kakure.presidents.b_punch];
+  }
+})
+
+kakure.presidents.b_cat = new Encounter({
+  name:"kakure.presidents.b_cat",
+  title:"",
+  boxed_text:"George glares at you saying nothing. You quickly finish your meal. You\'re a little disappointed at how few cracker you were given. \"You look like you have a stomach ache. Serves you right for eating so fast.\"",
+  choices:["\"I\'m sorry, I guess I\'m just tired.\"","\"I was hungry...I still am.\"","\"I could use something else to eat, like what\'s in your pants\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.5);
+    this.outcomes=[kakure.presidents.b_tired,kakure.presidents.b_hungry,kakure.presidents.b_eat];
+  }
+})
+
+kakure.presidents.b_sorry = new Encounter({
+  name:"kakure.presidents.b_sorry",
+  title:"",
+  boxed_text:"George looks pleased. You quickly finish your meal. You\'re a little disappointed at how few cracker you were given. \"You look like you have a stomach ache. Serves you right for eating so fast.\"",
+  choices:["\"I\'m sorry, I guess I\'m just tired.\"","\"I was hungry...I still am.\"","\"I could use something else to eat, like what\'s in your pants\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.25);
+    this.outcomes=[kakure.presidents.b_tired,kakure.presidents.b_hungry,kakure.presidents.b_eat];
+  }
+})
+
+kakure.presidents.b_punch = new Encounter({
+  name:"kakure.presidents.b_punch",
+  title:"",
+  boxed_text:"\"No one attacks the president. Former or not.\"",
+  choices:["Next"],
+  outcomes:[_monogram],
+  callback:function(){
+    kakure.presidents.ending="punch"
+    kakure.presidents.kokoro(this,-1*kakure.presidents.hearts);
+    this.outcomes=[kakure.presidents.gameover];
+  }
+})
+
+kakure.presidents.b_tired = new Encounter({
+  name:"kakure.presidents.b_tired",
+  title:"",
+  boxed_text:"George nods understandingly. George finishes eating the cat and says, \"It is proper for me to escort you to your home.\"",
+  choices:["\"That sounds like a good idea, thank you.\"","\"Okay, as long as you don\'t try anything perverted.\"","\"I can get home on my own, thank you.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,+0.75);
+    this.outcomes=[kakure.presidents.b_goodidea,kakure.presidents.b_perv,kakure.presidents.b_myown];
+  }
+})
+
+kakure.presidents.b_hungry = new Encounter({
+  name:"kakure.presidents.b_hungry",
+  title:"",
+  boxed_text:"\"You should be grateful for what you have.\" George finishes eating the cat and says, \"It is proper for me to escort you to your home.\"",
+  choices:["\"That sounds like a good idea, thank you.\"","\"Okay, as long as you don\'t try anything perverted.\"","\"I can get home on my own, thank you.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.5);
+    this.outcomes=[kakure.presidents.b_goodidea,kakure.presidents.b_perv,kakure.presidents.b_myown];
+  }
+})
+
+kakure.presidents.b_eat = new Encounter({
+  name:"kakure.presidents.b_eat",
+  title:"",
+  boxed_text:"George sighs and says, \"There\'s no hope for you is there?\" George finishes eating the cat and says, \"It is proper for me to escort you to your home.\"",
+  choices:["\"That sounds like a good idea, thank you.\"","\"Okay, as long as you don\'t try anything perverted.\"","\"I can get home on my own, thank you.\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-0.75);
+    this.outcomes=[kakure.presidents.b_goodidea,kakure.presidents.b_perv,kakure.presidents.b_myown];
+  }
+})
+
+kakure.presidents.b_goodidea = new Encounter({
+  name:"kakure.presidents.b_goodidea",
+  title:"",
+  boxed_text:"George nods. You and George leave the restaurant. You and George arrive at your house. \"We\'re here.\"",
+  choices:["\"Would you like to come inside for some hot tea?\"","\"Thanks.\"","\"Would you like to get laid tonight, Mr. President?\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,1.25);
+    this.outcomes=[kakure.presidents.b_tea,kakure.presidents.b_thanks,kakure.presidents.b_laid];
+  }
+})
+
+kakure.presidents.b_perv = new Encounter({
+  name:"kakure.presidents.b_perv",
+  title:"",
+  boxed_text:"\"I\'m offended that you would suggest such a thing.\" You and George leave the restaurant. You and George arrive at your house. \"We\'re here.\"",
+  choices:["\"Would you like to come inside for some hot tea?\"","\"Thanks.\"","\"Would you like to get laid tonight, Mr. President?\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,1.5);
+    this.outcomes=[kakure.presidents.b_tea,kakure.presidents.b_thanks,kakure.presidents.b_laid];
+  }
+})
+
+kakure.presidents.b_myown = new Encounter({
+  name:"kakure.presidents.b_myown",
+  title:"",
+  boxed_text:"\"Very well, goodbye.\" You and George leave the restaurant. You and George arrive at your house. \"We\'re here.\"",
+  choices:["\"Would you like to come inside for some hot tea?\"","\"Thanks.\"","\"Would you like to get laid tonight, Mr. President?\""],
+  outcomes:[_monogram,_monogram,_monogram],
+  callback:function(){
+    kakure.presidents.kokoro(this,-1*kakure.presidents.heats);
+    this.outcomes=[kakure.presidents.b_tea,kakure.presidents.b_thanks,kakure.presidents.b_laid];
+  }
+})
+
+kakure.presidents.b_tea = new Encounter({
+  name:"kakure.presidents.b_tea",
+  title:"",
+  boxed_text:"\"I certainly would.\"",
+  choices:["Next"],
+  outcomes:[_monogram],
+  callback:function(){
+    //kakure.presidents.hearts=4;
+    kakure.presidents.kokoro(this,1.5);
+    this.outcomes=[kakure.presidents.gameover];
+  }
+})
+
+kakure.presidents.b_thanks = new Encounter({
+  name:"kakure.presidents.b_thanks",
+  title:"",
+  boxed_text:"\"Goodnight.\"",
+  choices:["Next"],
+  outcomes:[_monogram],
+  callback:function(){
+    //kakure.presidents.hearts=4;
+    kakure.presidents.kokoro(this,-0.5);
+    this.outcomes=[kakure.presidents.gameover];
+  }
+})
+
+kakure.presidents.b_laid = new Encounter({
+  name:"kakure.presidents.b_laid",
+  title:"",
+  boxed_text:"\"That sounds acceptable\"",
+  choices:["Next"],
+  outcomes:[_monogram],
+  callback:function(){
+    kakure.presidents.hearts=4;
+    kakure.presidents.kokoro(this,0);
+    this.outcomes=[kakure.presidents.gameover];
+  }
+})
 /*
-nextmonth:-0.25 "Obama gets up and shakes your hand. \"I\'ll see you then.\""
-michelle:+0.75 "Obama laughs. \"Well, she is on a trip to Haiti for the week...\""
-tonight:+0.25 "Obama smiles at you. \"We could get some...\"<br /><br />\"Paperwork...done before then.\""
 */
 
 _monogram = new Encounter({
@@ -1286,8 +1636,8 @@ pasokon = new Encounter({
 	callback:function(){
       if(player.inventory.keyboard>0){
         this.boxed_text="You turn the TV on and plug your keyboard into the black box. You push some junk out of the way and sit down on the couch. What do you want to open?";
-        this.choices=["Steam","Discord","File Explorer"];
-        this.outcomes=[_steam,_discord,_files];
+        this.choices=["Steam","Discord","File Explorer","Command Prompt"];
+        this.outcomes=[_steam,_discord,_files,_cmd];
       }
 	}
 })
@@ -1300,6 +1650,56 @@ _steam = new Encounter({
 	outcomes:[kakure.skyrim.encounters.crossroads,pasokon],
 	callback:function(){
 
+	}
+})
+
+CMD.handler=function(){
+  CMD.navigate=false;
+  CMD.log+="<br /><br />&gt;"+CMD.prompt.value;
+  if(CMD.inputs.indexOf(CMD.prompt.value)==CMD.inputs.length-1&&CMD.inputs.length!==0){
+
+  } else {
+    CMD.inputs.push(CMD.prompt.value);
+  }
+  switch(CMD.prompt.value){
+    case "help":
+      console.log("HELP")
+      CMD.log+="helpmessage";
+      break;
+    default:
+      try{
+        eval(CMD.prompt.value);
+      } catch(err){
+        CMD.log+="<br /><br />"+err
+      }
+  }
+  if(!CMD.navigate){
+    _cmd.gen()
+  } else {
+    CMD.console.style.display="none";
+  }
+  //-------------------------------
+  //
+  //_cmd.gen()
+  CMD.prompt.value="";
+}
+
+CMD.keychecker=function(e){
+  //console.log(e.keyCode)
+  if(e.keyCode==13){
+    CMD.handler();
+  }
+}
+
+_cmd = new Encounter({
+	name:"_cmd",
+	title:"Command Prompt",
+	boxed_text:window.navigator.userAgent+"<br /><br />"+CMD.log,
+	choices:["Exit Command Prompt"],
+	outcomes:[pasokon],
+	callback:function(){
+    CMD.console.style.display="inline"
+    _cmd.boxed_text=window.navigator.userAgent+"<br /><br />"+CMD.log;
 	}
 })
 
