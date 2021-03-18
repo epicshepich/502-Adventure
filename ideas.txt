@@ -3,17 +3,12 @@ Undo button
 Alexa Skyrim
   https://en.m.uesp.net/wiki/SkyrimVSE:Quests
 
-True Love Presidents Edition
-  gameover (endings=)
-    Obama
-    Bush
-    Clinton
-    punch
-    leavebush
-    bodyslam
+Set titles for presidents encounters
 
 
 Fight club (rock paper scissors?)
+
+Brainstorm a new way to handle files
 
 Jim's computer
   CMD
@@ -30,7 +25,7 @@ Jim's computer
     Sans JS?
   Files
     Oniichan spam
-    Erwin memes
+    Erwin meme
     True Love Presidents Edition
     index.html
       Nests the game in an iFrame

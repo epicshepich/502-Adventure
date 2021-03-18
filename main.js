@@ -99,6 +99,9 @@ var pasokon=function(){};
   var _files=function(){};
   var _discord=function(){};
   var _cmd=function(){};
+  var _finallyawake=function(){};
+  kakure.files={}
+  kakure.files.jpg134={gen:function(){}}
 
 var diarrhea = new Encounter({
   name:"diarrhea",
@@ -448,7 +451,7 @@ shed = new Encounter({
 //                                True Love, Presidents Edition
 //==============================================================================
 //NOTE: for kakure minigames, the main encounter that leads to the first kakure encounter must come after all of them in the code
-kakure.presidents={hearts:2.5,ending:""};
+kakure.presidents={hearts:2.5,ending:"",mission:false};
 kakure.presidents.kokoro=function(obj,H){
   kakure.presidents.hearts+=H;
   console.log(kakure.presidents.hearts);
@@ -532,6 +535,26 @@ kakure.presidents.bushjr=function(){};
                               kakure.presidents.b_laid=function(){};
 kakure.presidents.bushsr=function(){};
 kakure.presidents.clinton=function(){};
+    kakure.presidents.c_hello=function(){};
+    kakure.presidents.c_bubba=function(){};
+    kakure.presidents.c_pants=function(){};
+        kakure.presidents.c_23=function(){};
+        kakure.presidents.c_18=function(){};
+        kakure.presidents.c_17=function(){};
+            kakure.presidents.c_great=function(){};
+            kakure.presidents.c_paying=function(){};
+            kakure.presidents.c_slap=function(){};
+                kakure.presidents.c_hello=function(){};
+                kakure.presidents.c_bubba=function(){};
+                kakure.presidents.c_pants=function(){};
+                  kakure.presidents.c_dongxi=function(){};
+                    kakure.presidents.c_hello=function(){};
+                    kakure.presidents.c_bubba=function(){};
+                    kakure.presidents.c_pants=function(){};
+                        kakure.presidents.c_job=function(){};
+                        kakure.presidents.c_drop=function(){};
+                            kakure.presidents.c_tease=function(){};
+                        kakure.presidents.c_pickup=function(){};
 kakure.presidents.quit=function(){};
 kakure.presidents.gameover=function(){};
 /*
@@ -613,7 +636,7 @@ kakure.presidents.obama = new Encounter({
 	choices:["\"Hello, Mr. Obama\"","\"Sup, Barack\"","\"Take your shirt off\"","*body slam obama*"],
 	outcomes:[_monogram,_monogram,_monogram,_monogram],
 	callback:function(){
-    kakure.presidents.ending="obama";
+    kakure.presidents.ending="Obama";
     this.outcomes=[kakure.presidents.o_hello,kakure.presidents.o_sup,kakure.presidents.o_shirt,kakure.presidents.o_slam]
 	}
 })
@@ -935,7 +958,7 @@ kakure.presidents.o_nextmonth = new Encounter({
 	name:"kakure.presidents.o_nextmonth",
 	title:"",
 	boxed_text:"Obama gets up and shakes your hand. \"I\'ll see you then.\"",
-  choices:["Continue"],
+  choices:["Next"],
 	outcomes:[_monogram],
 	callback:function(){
     kakure.presidents.kokoro(this,-0.25);
@@ -947,7 +970,7 @@ kakure.presidents.o_michelle = new Encounter({
 	name:"kakure.presidents.o_michelle",
 	title:"",
 	boxed_text:"Obama laughs. \"Well, she is on a trip to Haiti for the week...\"",
-  choices:["Continue"],
+  choices:["Next"],
 	outcomes:[_monogram],
 	callback:function(){
     kakure.presidents.kokoro(this,+0.75);
@@ -959,22 +982,11 @@ kakure.presidents.o_tonight = new Encounter({
 	name:"kakure.presidents.o_tonight",
 	title:"",
 	boxed_text:"Obama smiles at you. \"We could get some...\"<br /><br />\"Paperwork...done before then.\"",
-  choices:["Continue"],
+  choices:["Next"],
 	outcomes:[_monogram],
 	callback:function(){
     kakure.presidents.kokoro(this,+0.25);
     this.outcomes=[kakure.presidents.gameover];
-	}
-})
-
-kakure.presidents.gameover = new Encounter({
-	name:"kakure.presidents.gameover",
-	title:"",
-	boxed_text:"Game over. Continue?",
-  choices:["Yes"],
-	outcomes:[_monogram],
-	callback:function(){
-    this.outcomes=[kakure.presidents.opening];
 	}
 })
 
@@ -985,7 +997,7 @@ kakure.presidents.bushjr = new Encounter({
 	choices:["\"Hello, Mr. Bush\"","Sup G-dawg","Drop your pants."],
 	outcomes:[_monogram,_monogram,_monogram],
 	callback:function(){
-    kakure.presidents.ending="bush"
+    kakure.presidents.ending="Bush"
     this.outcomes=[kakure.presidents.b_hello,kakure.presidents.b_sup,kakure.presidents.b_pants];
 	}
 })
@@ -1292,8 +1304,238 @@ kakure.presidents.b_laid = new Encounter({
     this.outcomes=[kakure.presidents.gameover];
   }
 })
-/*
-*/
+
+kakure.presidents.clinton = new Encounter({
+	name:"kakure.presidents.clinton",
+	title:"",
+	boxed_text:"\"Hello there, young lady.\"",
+	choices:["\"Hello, Mr. Clinton.\"","\"Hello, Bubba.\"","\"Drop your pants.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.ending="Clinton";
+    this.outcomes=[kakure.presidents.c_hello,kakure.presidents.c_bubba,kakure.presidents.c_pants]
+	}
+})
+
+kakure.presidents.c_hello = new Encounter({
+	name:"kakure.presidents.c_hello",
+	title:"",
+	boxed_text:"\"Please, call me bill.\"<br /><br />Clinton looks you over. \"How old are you?\"",
+	choices:["\"Since you asked nicely, I\'m 23.\"","\"Over 18, if that\'s what you\'re asking.\"","\"I\'m 17.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,0.25);
+    this.outcomes=[kakure.presidents.c_23,kakure.presidents.c_18,kakure.presidents.c_17]
+	}
+})
+
+kakure.presidents.c_bubba = new Encounter({
+	name:"kakure.presidents.c_bubba",
+	title:"",
+	boxed_text:"\"I don\'t appreciate being called that, especially by people I don\'t know.\"<br /><br />Clinton looks you over. \"How old are you?\"",
+	choices:["\"Since you asked nicely, I\'m 23.\"","\"Over 18, if that\'s what you\'re asking.\"","\"I\'m 17.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,-0.25);
+    this.outcomes=[kakure.presidents.c_23,kakure.presidents.c_18,kakure.presidents.c_17]
+	}
+})
+
+kakure.presidents.c_pants = new Encounter({
+	name:"kakure.presidents.c_pants",
+	title:"",
+	boxed_text:"\"Right now? Ok...\"",
+	choices:["Next"],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.hearts=4;
+    kakure.presidents.kokoro(this,0);
+    this.outcomes=[kakure.presidents.gameover];
+	}
+})
+
+kakure.presidents.c_23 = new Encounter({
+	name:"kakure.presidents.c_23",
+	title:"",
+	boxed_text:"\"A great age to be.\"<br /><br />Clinton looks you over. \"How would you like to come to dinner? My favorite restaurant is just around the corner...\"",
+	choices:["\"Sounds like a great idea.\"","\"You\'re paying, right?\"","*slap Clinton*"],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,0.75);
+    this.outcomes=[kakure.presidents.c_great,kakure.presidents.c_paying,kakure.presidents.c_slap]
+	}
+})
+
+kakure.presidents.c_18 = new Encounter({
+	name:"kakure.presidents.c_18",
+	title:"",
+	boxed_text:"\"I see we understand each other.\"<br /><br />Clinton looks you over. \"How would you like to come to dinner? My favorite restaurant is just around the corner...\"",
+	choices:["\"Sounds like a great idea.\"","\"You\'re paying, right?\"","*slap Clinton*"],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,1);
+    this.outcomes=[kakure.presidents.c_great,kakure.presidents.c_paying,kakure.presidents.c_slap]
+	}
+})
+
+kakure.presidents.c_17 = new Encounter({
+	name:"kakure.presidents.c_17",
+	title:"",
+	boxed_text:"\"That\'s close enough to 18.\"<br /><br />Clinton looks you over. \"How would you like to come to dinner? My favorite restaurant is just around the corner...\"",
+	choices:["\"Sounds like a great idea.\"","\"You\'re paying, right?\"","*slap Clinton*"],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,1.25);
+    this.outcomes=[kakure.presidents.c_great,kakure.presidents.c_paying,kakure.presidents.c_slap]
+	}
+})
+
+kakure.presidents.c_great = new Encounter({
+	name:"kakure.presidents.c_great",
+	title:"",
+	boxed_text:"\"Great!\"<br /><br />Clinton looks you over. \"Let\'s go.\"",
+	choices:["Head to the restaurant"],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,0.5);
+    this.outcomes=[kakure.presidents.c_dongxi]
+	}
+})
+
+kakure.presidents.c_paying = new Encounter({
+	name:"kakure.presidents.c_paying",
+	title:"",
+	boxed_text:"\"Well, I guess...\"<br /><br />Clinton looks you over. \"Let\'s go.\"",
+	choices:["Head to the restaurant"],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.kokoro(this,-0.25);
+    this.outcomes=[kakure.presidents.c_dongxi]
+	}
+})
+
+kakure.presidents.c_slap = new Encounter({
+	name:"kakure.presidents.c_slap",
+	title:"",
+	boxed_text:"\"I WOULD NOT HAVE. SEXUAL RELATIONS. WITH YOU, WOMAN!\"",
+	choices:["Next"],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.hearts=0;
+    kakure.presidents.kokoro(this,0);
+    kakure.presidents.ending="slap";
+    this.outcomes=[kakure.presidents.gameover]
+	}
+})
+
+kakure.presidents.c_dongxi = new Encounter({
+	name:"kakure.presidents.c_dongxi",
+	title:"",
+	boxed_text:"You arrive at the Dongxi Chinese restaurant. \"\"So what brought you to the mall today?\"\"",
+	choices:["\"I was looking for a job\"","\"To make you drop your pants.\"","\"I came to find a random guy to bring home.\""],
+	outcomes:[_monogram,_monogram,_monogram],
+	callback:function(){
+  //  kakure.presidents.hearts=0;
+  //  kakure.presidents.kokoro(this,0);
+  //  kakure.presidents.ending="slap";
+    this.outcomes=[kakure.presidents.c_job,kakure.presidents.c_drop,kakure.presidents.c_pickup]
+	}
+})
+
+kakure.presidents.c_job = new Encounter({
+	name:"kakure.presidents.c_job",
+	title:"",
+	boxed_text:"\"I\'ve got a job you can do, just come back to my house.\"",
+	choices:["\"Okay.\"","\"No.\""],
+	outcomes:[_monogram,_monogram],
+	callback:function(){
+    kakure.presidents.hearts=5;
+    kakure.presidents.kokoro(this,0);
+  //  kakure.presidents.ending="slap";
+    this.outcomes=[kakure.presidents.c_gameover,kakure.presidents.c_tease]
+	}
+})
+
+kakure.presidents.c_tease = new Encounter({
+	name:"kakure.presidents.c_tease",
+	title:"",
+	boxed_text:"\"You tease. Get outta my sight.\"",
+	choices:["\"Next\""],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.hearts=0;
+    kakure.presidents.kokoro(this,0);
+    kakure.presidents.ending="tease";
+    this.outcomes=[kakure.presidents.c_gameover]
+	}
+})
+
+kakure.presidents.c_drop = new Encounter({
+	name:"kakure.presidents.c_drop",
+	title:"",
+	boxed_text:"\"My house or yours?\"",
+	choices:["\"Yours.\""],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.hearts=5;
+    kakure.presidents.kokoro(this,0);
+  //  kakure.presidents.ending="slap";
+    this.outcomes=[kakure.presidents.c_gameover]
+	}
+})
+
+kakure.presidents.c_pickup = new Encounter({
+	name:"kakure.presidents.c_pickup",
+	title:"",
+	boxed_text:"\"I\'m a random guy. How \'bout I take YOU home?\"",
+	choices:["\"Okay.\""],
+	outcomes:[_monogram],
+	callback:function(){
+    kakure.presidents.hearts=5;
+    kakure.presidents.kokoro(this,0);
+  //  kakure.presidents.ending="slap";
+    this.outcomes=[kakure.presidents.c_gameover]
+	}
+})
+
+kakure.presidents.gameover = new Encounter({
+	name:"kakure.presidents.gameover",
+	title:"",
+	boxed_text:"Game over. Continue?",
+  choices:["Yes"],
+	outcomes:[_monogram],
+	callback:function(){
+    if(kakure.presidents.mission){
+      if(kakure.presidents.ending=="bodyslam"||kakure.presidents.ending=="punch"||kakure.presidents.ending=="slap"||kakure.presidents.ending=="leavebush"||kakure.presidents.ending=="tease"){
+        this.boxed_text="Before you know what\'s happening, everything fades to black.";
+        this.choices=["Next"];
+        this.outcomes=[_finallyawake];
+      } else if(kakure.presidents.hearts>=4){
+        this.boxed_text="You make sweet love to Former President "+kakure.presidents.ending+". In the morning, you two go back to the Dongxi Chinese restaurant for breakfast, where you make love again. In the afterglow, you spot an impatient-looking man dressed like a pharmacist. Dr. Doofenshmirtz! You sic the secret service on Doof, who is swiftly tackled and dragged away, no doubt to be tortured to death in the presidential catacombs.<br /><br />Having thwarted Dr. Doofenshmirtz\'s evil scheme, you are promoted by Major Monogram. With this promotion, you\'ll finally have some more time to spend with Phineas and Ferb. Maybe now you can join in with their infamous hijinks.<br /><br />Years pass, and one day, you find yourself hiking out to the Googolplex Mall, where the Dongxi Chinese restaurant waits in the food court. As you are biting into your delicious fried mao, you hear a voice:<br /><br />\"Perry the Platypus...after years of searching, I have finally found you. My name is Vanessa Doofenshmirtz. You killed my father. Prepare to die!\" You turn to face your assailant, but before you can gather your bearings, everything suddenly fades to black.";
+        this.choices=["Next"];
+        this.outcomes=[_finallyawake]
+      } else {
+        this.boxed_text="You failed to protect Former President "+kakure.presidents.ending+" A day goes by, and you see a news headline: \"Former President "+kakure.presidents.ending+" assassinated at breakfast in Dongxi Chinese restaurant.\" No doubt the work of Dr. Doofenshmirtz. If only President "+kakure.presidents.outcome+" had slept in today...<br /><br />Naturally, your position at OWCA is terminated, and you are left to wander the streets.<br /><br />Some months pass, and you manage to find some work turning tricks outside the Dongxi Chinese restaurant.<br /><br />More time passes, and one cold winter day, you spot none other than President Joe Biden, walking toward the Dongxi Chinese restaurant. He notices you.<br /><br />\"C\'mon, man. What\'re doin\' out here on the streets? That\'s a bunch of malarkey. Here Jack, I\'ll treat ya to a meal here at my favorite restaurant, Dongxi.\"<br /><br />Desperate to take the helping hand that has been offered to you, you put the moves on Joe, and eventually seduce him. You make sweet love to him all night long, and then, for the first time in years, you fall asleep in a warm, safe bed.";
+        this.choices=["Next"];
+        this.outcomes=[_finallyawake]
+      }
+    } else {
+      if(kakure.presidents.ending=="bodyslam"||kakure.presidents.ending=="punch"||kakure.presidents.ending=="slap"||kakure.presidents.ending=="leavebush"||kakure.presidents.ending=="tease"){
+        this.boxed_text="You are taken away by the secret service and tortured to death. Play again?";
+        this.choices=["Yes","No"];
+        this.outcomes=[kakure.presidents.opening,pasokon];
+      } else if(kakure.presidents.hearts>=4){
+        this.boxed_text="You have successfully seduced President "+kakure.presidents.outcomes+". Play again?";
+        this.choices=["Yes","No"];
+        this.outcomes=[kakure.presidents.opening,pasokon];
+      } else {
+        this.boxed_text="You have failed to seduce President "+kakure.presidents.outcomes+". Play again?";
+        this.choices=["Yes","No"];
+        this.outcomes=[kakure.presidents.opening,pasokon];
+      }
+    }
+	}
+})
 
 _monogram = new Encounter({
 	name:"_monogram",
@@ -1302,7 +1544,7 @@ _monogram = new Encounter({
 	choices:["Tip your fedora, and hop into the nearby platypus-shaped hover car.","Try your luck crawling back up the tube."],
 	outcomes:[kakure.presidents.start,shed],
 	callback:function(){
-
+    kakure.presidents.mission=true;
 	}
 })
 //==============================================================================
@@ -1624,6 +1866,18 @@ kakure.skyrim.encounters.q1=new Encounter({
     this.outcomes=[kakure.skyrim.encounters.accept,kakure.skyrim.encounters.crossroads]
   }
 })
+
+_finallyawake=new Encounter({
+  name:"_finallyawake",
+  title:"Todd Howard, you\'ve done it again",
+  boxed_text:"You were trying to cross the border, right? Walked right into that Imperial ambush, same as us, and that thief over there. Damn you Stormcloaks. Skyrim was fine until you came along. Empire was nice and lazy. If they hadn\'t been looking for you, I could\'ve stolen that horse and be halfway to Hammerfell. You there. You and me - we shouldn\'t be here. It\'s these Stormcloaks the Empire wants. We\'re all brothers and sisters in binds now, thief. Shut up back there! And what\'s wrong with him, huh? Watch your tongue. You\'re speaking to Ulfric Stormcloak, the true High King. Ulfric? The Jarl of Windhelm? You\'re the leader of the rebellion. But if they\'ve captured you... Oh gods, where are they taking us? I don\'t know where we\'re going, but Sovngarde awaits. No, this can\'t be happening. This isn\'t happening. Hey, what village are you from, horse thief? Why do you care? A Nord\'s last thoughts should be of home. Rorikstead. I\'m... I\'m from Rorikstead.<br /><br />...looks like the Thalmor are with him.<br /><br />General Tullius, sir. The headsman is waiting. Good. Let\'s get this over with! Shor, Mara, Dibella, Kynareth, Akatosh. Divines, please help me. Look at him. General Tullius the Military Governor. And it looks like the Thalmor are with him. Damn elves. I bet they had something to do with this.<br /><br />Why are we stopping? Why do you think? End of the line. Let\'s go. Shouldn\'t keep the gods waiting for us.",
+  choices:["While the guards are distracted, wander into the world of Skyrim"],
+  outcomes:[kakure.skyrim.encounters.crossroads],
+  callback:function(){
+
+  }
+})
+
 //==============================================================================
 //                                Jim's Computer
 //==============================================================================
@@ -1652,6 +1906,30 @@ _steam = new Encounter({
 
 	}
 })
+
+kakure.file="";
+
+kakure.files.jpg134.gen=function(){
+    kakure.file="<img src=\"images/134.jpg\" />";
+    _files.gen();
+}
+
+_files = new Encounter({
+	name:"_files",
+	title:"Downloads",
+	boxed_text:"",
+	choices:["presidents.swf","134.jpg","Return"],
+	outcomes:[pasokon,pasokon,pasokon],
+	callback:function(){
+    this.outcomes=[kakure.presidents.opening,kakure.files.jpg134,pasokon];
+    kakure.presidents.mission=false;
+    if(kakure.file!==""){
+      this.boxed_text=kakure.file;
+    }
+    kakure.file="";
+	}
+})
+
 
 CMD.handler=function(){
   CMD.navigate=false;
