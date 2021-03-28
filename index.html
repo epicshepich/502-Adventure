@@ -4,10 +4,12 @@
       <link rel="stylesheet" href="ui/ui.css">
   </head>
   <body>
-    <font size=5><div id="Title"></div></font>
-    <p id="box"></p>
-    <div id="cmd" style="display:none">&gt;<input type="text" onkeypress="CMD.keychecker(event)" id="cmdprompt"></input></div>
-    <p id="options"></p>
+    <div class="flex">
+      <div id="Title"></div>
+      <div id="box"></div>
+      <div id="cmd" style="display:none">&gt;<input type="text" onkeypress="CMD.keychecker(event)" id="cmdprompt"></input></div>
+      <div id="options"></div>
+    </div>
     <script src="main.js"></script>
     <script src="ui/ui.js"></script>
   </body>
